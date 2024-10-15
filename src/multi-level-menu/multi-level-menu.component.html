@@ -1,0 +1,27 @@
+<!-- multi-level-push-menu.component.html -->
+<div class="menu-wrapper" [class.rtl]="direction === 'rtl'">
+  <!-- Back button for navigating to the previous level -->
+  <button
+    *ngIf="isSubmenuActive()"
+    class="back-button"
+    (click)="navigateBack()"
+  >
+    &larr; Back
+  </button>
+
+  <!-- Current active menu -->
+  <ul>
+    <li *ngFor="let item of activeMenu[activeMenu.length - 1]">
+      <a [routerLink]="item.link">{{ item.title }}</a>
+
+      <!-- Arrow icon to indicate submenus -->
+      <button
+        *ngIf="item.children && item.children.length"
+        (click)="navigateTo(item)"
+      >
+        &rarr;
+        <!-- Or a custom icon for navigation -->
+      </button>
+    </li>
+  </ul>
+</div>
